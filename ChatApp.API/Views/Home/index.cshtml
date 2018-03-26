@@ -10,6 +10,19 @@
 <body>
     <div class="container body-content">
 
+        Name : <input type="text" data-bind="value: Name" />
+        Message: <input type="text" data-bind="value: MessageStr" />
+                 <input type="button" data-bind="click: Send" value="Send Message">
+        
+        <table class="table table-striped">
+            <tbody data-bind="foreach: Messages">
+                <tr>
+                    <td data-bind="text: Name"></td>
+                    <td data-bind="text: MessageStr"></td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -17,5 +30,28 @@
     <script src="~/Scripts/knockout-3.4.2.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
     <script src="~/signalr/hubs"></script>
+
+    <script>
+        var chat = $.connection.chatHub;
+
+        chat.client.getMessage = function (message) {
+            viewModel.Messages.push(message);
+        }
+
+        $.connection.hub.start();
+
+        var viewModel = {
+            Name: ko.observable(),
+            MessageStr: ko.observable(),
+            Messages: ko.observableArray([]),
+
+            Send: function () {
+                chat.server.sendMessage({ Name: this.Name(), MessageStr: this.MessageStr() });
+            }
+        };
+
+        ko.applyBindings(viewModel);
+
+    </script>
 </body>
 </html>
