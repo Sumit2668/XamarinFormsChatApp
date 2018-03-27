@@ -4,6 +4,42 @@
              x:Class="ChatApp.Views.ChatPage"
              NavigationPage.HasBackButton="False">
     <ContentPage.Content>
+        <Grid Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0"
+                        Orientation="Horizontal">
+                <StackLayout>
+                    <StackLayout HorizontalOptions="End"
+                                 Padding="10"
+                                 BackgroundColor="#2196F3">
+                        <Label Text="Hello World"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="Start"
+                                 Padding="10"
+                                 BackgroundColor="#2196F3">
+                        <Label Text="Hello World"
+                               TextColor="White"/>
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+            <StackLayout Orientation="Horizontal"
+                         Grid.Row="1">
+                <Entry Placeholder="Enter Message"
+                       x:Name="messageEntry"
+                       PlaceholderColor="Gray"
+                       HorizontalOptions="FillAndExpand"/>
+                <Button Text="Send"
+                        x:Name="sendButton"
+                        HorizontalOptions="End"
+                         BackgroundColor="#2196F3"
+                        TextColor="White"/>
+            </StackLayout>
+        </Grid>
         
     </ContentPage.Content>
 </ContentPage>

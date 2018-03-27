@@ -20,7 +20,8 @@
                    PlaceholderColor="Gray"
                    HorizontalTextAlignment="Center"
                    VerticalOptions="End"
-                   Grid.Row="1"/>
+                   Grid.Row="1"
+                   x:Name="personName"/>
 
             <Button x:Name="login"
                     Grid.Row="2"

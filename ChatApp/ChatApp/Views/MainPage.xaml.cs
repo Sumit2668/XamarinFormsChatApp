@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,9 +25,19 @@ namespace ChatApp.Views
             Navigation.PushAsync(new AdminLoginPage());
         }
 
-        private void Login_Clicked(object sender, EventArgs e)
+        private async void Login_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ChatPage());
+            if (!string.IsNullOrEmpty(personName.Text) )
+            {
+                ChatClientService.SetUp();
+                await ChatClientService.Connect();
+                Navigation.PushAsync(new ChatPage(personName.Text));
+            }
+
+            else
+            {
+                personName.Placeholder = "Enter a Name First!";
+            }
         }
     }
 }
