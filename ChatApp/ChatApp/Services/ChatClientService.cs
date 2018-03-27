@@ -15,7 +15,7 @@ namespace ChatApp.Services
 
         public static void SetUp()
         {
-            _connection = new HubConnection("");
+            _connection = new HubConnection("http://chatappapi.azurewebsites.net");
             _proxy = _connection.CreateHubProxy("ChatHub");
         }
 
