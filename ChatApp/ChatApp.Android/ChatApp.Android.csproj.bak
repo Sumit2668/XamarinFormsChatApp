@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>ChatApp.Droid</RootNamespace>
     <AssemblyName>ChatApp.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -79,11 +79,14 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ChatApp\ChatApp.csproj">
       <Project>{F38B797F-44CC-4166-92FE-3548318C2551}</Project>
       <Name>ChatApp</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+
+
+ <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
