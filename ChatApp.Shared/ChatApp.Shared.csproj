@@ -36,6 +36,9 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AdminPerson.cs" />
+    <Compile Include="Models\BasePerson.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\stuff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
