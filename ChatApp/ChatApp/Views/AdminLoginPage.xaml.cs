@@ -10,17 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace ChatApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MainPage : ContentPage
+	public partial class AdminLoginPage : ContentPage
 	{
-		public MainPage ()
+		public AdminLoginPage ()
 		{
 			InitializeComponent ();
-            adminLogin.Clicked += AdminLogin_Clicked;
 		}
-
-        private void AdminLogin_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new AdminLoginPage());
-        }
-    }
+	}
 }

@@ -1,45 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ChatApp.ViewModels"
-             x:Class="ChatApp.Views.MainPage"
-             NavigationPage.HasNavigationBar="False">
-    <ContentPage.BindingContext>
-        <local:MainPageViewModel/>
-    </ContentPage.BindingContext>
+             x:Class="ChatApp.Views.AdminLoginPage">
     <ContentPage.Content>
         <Grid Padding="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
-            <Entry Placeholder="Enter a Chat Name"
+            <Entry Placeholder="Username"
                    PlaceholderColor="Gray"
                    HorizontalTextAlignment="Center"
-                   VerticalOptions="End"
+                   VerticalOptions="Center"
                    Grid.Row="1"/>
 
+            <Entry Placeholder="Password"
+                   PlaceholderColor="Gray"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"
+                   Grid.Row="2"
+                   IsPassword="True"/>
+
             <Button x:Name="login"
-                    Grid.Row="2"
-                    Text="Start Chat"
+                    Grid.Row="3"
+                    Text="Login"
                     TextColor="#FFFFFF"
                     WidthRequest="150"
                     BackgroundColor="#2196F3"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"/>
-
-            <Button x:Name="adminLogin"
-                    Grid.Row="3"
-                    Text="Admin Login"
-                    TextColor="#FFFFFF"
-                    VerticalOptions="End"
-                    WidthRequest="150"
-                    HeightRequest="40"
-                    BackgroundColor="#2196F3"
-                    HorizontalOptions="End"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
