@@ -1,12 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ChatApp.ViewModels"
              x:Class="ChatApp.Views.MainPage">
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <Entry Placeholder="Enter a Chat Name"
+                   PlaceholderColor="Gray"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="End"
+                   Grid.Row="1"/>
+
+            <Button x:Name="login"
+                    Grid.Row="2"
+                    Text="Start Chat"
+                    TextColor="#FFFFFF"
+                    WidthRequest="150"
+                    BackgroundColor="#2196F3"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+
+            <Button x:Name="adminLogin"
+                    Grid.Row="3"
+                    Text="Admin Login"
+                    TextColor="#FFFFFF"
+                    VerticalOptions="End"
+                    WidthRequest="150"
+                    HeightRequest="40"
+                    BackgroundColor="#2196F3"
+                    HorizontalOptions="End"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
