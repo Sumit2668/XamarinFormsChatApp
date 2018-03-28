@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ChatApp.Services;
+using ChatApp.Shared.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,8 +21,11 @@ namespace ChatApp.Views
             login.Clicked += Login_Clicked;
 		}
 
-        private void Login_Clicked(object sender, EventArgs e)
+        private async void Login_Clicked(object sender, EventArgs e)
         {
+            ChatClientService.SetUp();
+            await ChatClientService.Connect();
+            ChatClientService.Counter++;
             Navigation.PushAsync(new AdminChatListPage());
         }
     }

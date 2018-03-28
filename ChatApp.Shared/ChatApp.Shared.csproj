@@ -40,6 +40,7 @@
     <Compile Include="Models\BasePerson.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\stuff.cs" />
+    <Compile Include="Models\UserPerson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

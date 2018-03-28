@@ -12,17 +12,27 @@ namespace ChatApp.Services
         private static HubConnection _connection;
         private static IHubProxy _proxy;
         public static event EventHandler<ChatMessage> OnMessageRecieved;
+        public static int Counter = 0;
 
         public static void SetUp()
         {
-            _connection = new HubConnection("http://chatappapi.azurewebsites.net");
-            _proxy = _connection.CreateHubProxy("ChatHub");
+            if (Counter == 0)
+            {
+                _connection = new HubConnection("http://chatappapi.azurewebsites.net");
+                _proxy = _connection.CreateHubProxy("ChatHub");
+
+            }
+           
         }
 
         public static async Task Connect()
         {
-            await _connection.Start();
-            _proxy.On("GetMessage", (ChatMessage message) => OnMessageRecieved(null, message));
+            if (Counter == 0)
+            {
+                await _connection.Start();
+                _proxy.On("GetMessage", (ChatMessage message) => OnMessageRecieved(null, message));
+            }
+            
         }
 
         public static Task Send(ChatMessage message)
