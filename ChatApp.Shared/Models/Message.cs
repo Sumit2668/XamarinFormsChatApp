@@ -9,8 +9,8 @@ namespace ChatApp.Shared.Models
     public class Message
     {
         public int Id { get; set; }
-        public BasePerson Owner { get; set; }
-        public BasePerson Reciever { get; set; }
+        public string Owner { get; set; }
+        public string Reciever { get; set; }
         public string Content { get; set; }
     }
 }

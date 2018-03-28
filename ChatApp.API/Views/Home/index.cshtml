@@ -10,15 +10,15 @@
 <body>
     <div class="container body-content">
 
-        Name : <input type="text" data-bind="value: Name" />
-        Message: <input type="text" data-bind="value: MessageStr" />
+        Owner : <input type="text" data-bind="value: Owner" />
+        Content: <input type="text" data-bind="value: Content" />
                  <input type="button" data-bind="click: Send" value="Send Message">
         
         <table class="table table-striped">
             <tbody data-bind="foreach: Messages">
                 <tr>
-                    <td data-bind="text: Name"></td>
-                    <td data-bind="text: MessageStr"></td>
+                    <td data-bind="text: Owner"></td>
+                    <td data-bind="text: Content"></td>
                 </tr>
             </tbody>
         </table>
@@ -32,6 +32,7 @@
     <script src="~/signalr/hubs"></script>
 
     <script>
+        var count = 0;
         var chat = $.connection.chatHub;
 
         chat.client.getMessage = function (message) {
@@ -41,12 +42,15 @@
         $.connection.hub.start();
 
         var viewModel = {
-            Name: ko.observable(),
-            MessageStr: ko.observable(),
+            Id: ko.observable(),
+            Owner: ko.observable(),
+            Reciever: ko.observable(),
+            Content: ko.observable(),
             Messages: ko.observableArray([]),
 
             Send: function () {
-                chat.server.sendMessage({ Name: this.Name(), MessageStr: this.MessageStr() });
+                chat.server.sendMessage({ Id: count, Owner: this.Owner(), Reciever: "admin", Content: this.Content() });
+                count++;
             }
         };
 
