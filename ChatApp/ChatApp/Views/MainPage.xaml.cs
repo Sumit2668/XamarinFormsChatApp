@@ -35,6 +35,13 @@ namespace ChatApp.Views
             {
                 if(CrossConnectivity.Current.IsConnected)
                 {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        adminLogin.IsVisible = false;
+                        personName.IsVisible = false;
+                        login.IsVisible = false;
+                        activity.IsVisible = true;
+                    });
                     ChatClientServiceUser ch = new ChatClientServiceUser();
                     await ch.Connect();
                     Navigation.PushAsync(new ChatPage(personName.Text, ref ch));

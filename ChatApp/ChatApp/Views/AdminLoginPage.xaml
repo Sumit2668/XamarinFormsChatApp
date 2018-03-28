@@ -12,6 +12,15 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
+            <ActivityIndicator 
+                Grid.Row="2"
+                x:Name="activity"
+                Color="#2196F3"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                IsRunning="True"
+                IsVisible="False"/>
+
             <Entry Placeholder="Username"
                    PlaceholderColor="Gray"
                    HorizontalTextAlignment="Center"

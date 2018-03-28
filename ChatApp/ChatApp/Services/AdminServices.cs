@@ -25,6 +25,10 @@ namespace ChatApp.Services
 
         private static void ChatClientService_OnMessageRecieved(object sender, Message e)
         {
+            if (e.Owner == "admin")
+            {
+                return;
+            }
             var person = userPeople.Where(p => p.Name == e.Owner).FirstOrDefault();
 
             if (person == null)

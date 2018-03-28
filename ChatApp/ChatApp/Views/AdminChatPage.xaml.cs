@@ -27,15 +27,15 @@ namespace ChatApp.Views
 
             sendButton.Clicked += SendButton_ClickedAsync;
 
-            ChatClientService.OnMessageRecieved += ChatClientService_OnMessageRecieved;
+            ChatClientService.OnMessageRecieved += ChatClientService_OnMessageRecieved1;
 
             ReelMessages(_person.Messages);
 
         }
 
-        private void ChatClientService_OnMessageRecieved(object sender, Message e)
+        private void ChatClientService_OnMessageRecieved1(object sender, Message e)
         {
-            if (e.Reciever == "admin")
+            if (e.Owner == "admin")
             {
                 StackLayout sL = new StackLayout();
                 sL.HorizontalOptions = LayoutOptions.End;
@@ -100,7 +100,7 @@ namespace ChatApp.Views
         {
             foreach (var message in messages)
             {
-                if (message.Reciever == "admin")
+                if (message.Owner == "admin")
                 {
                     StackLayout sL = new StackLayout();
                     sL.HorizontalOptions = LayoutOptions.End;

@@ -28,6 +28,13 @@ namespace ChatApp.Views
             {
                 if (CrossConnectivity.Current.IsConnected)
                 {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        username.IsVisible = false;
+                        password.IsVisible = false;
+                        login.IsVisible = false;
+                        activity.IsVisible = true;
+                    });
                     ChatClientService.SetUp();
                     await ChatClientService.Connect();
                     ChatClientService.Counter++;

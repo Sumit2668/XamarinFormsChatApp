@@ -49,7 +49,7 @@
             Messages: ko.observableArray([]),
 
             Send: function () {
-                chat.server.sendMessage({ Id: count, Owner: this.Owner(), Reciever: "vincent", Content: this.Content() });
+                chat.server.sendMessage({ Id: count, Owner: this.Owner(), Reciever: "admin", Content: this.Content() });
                 count++;
             }
         };
