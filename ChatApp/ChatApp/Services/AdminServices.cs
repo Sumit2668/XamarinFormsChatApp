@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace ChatApp.Services
@@ -24,11 +25,28 @@ namespace ChatApp.Services
 
         private static void ChatClientService_OnMessageRecieved(object sender, Message e)
         {
-            Debug.WriteLine(e.Content);
-            userPeople.Add(new UserPerson
+            var person = userPeople.Where(p => p.Name == e.Owner).FirstOrDefault();
+
+            if (person == null)
             {
-                Name = e.Content, 
-            });
+                userPeople.Add(new UserPerson
+                {
+                    Name = e.Owner,
+                    Messages = new List<Message>
+                    {
+                        e
+                    },
+                });
+            }
+
+            else
+            {
+                person.Messages.Add(e);
+            }
+
+
+
+
         }
     }
 }

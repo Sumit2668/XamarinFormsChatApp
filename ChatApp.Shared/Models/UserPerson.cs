@@ -8,5 +8,6 @@ namespace ChatApp.Shared.Models
 {
     public class UserPerson : BasePerson
     {
+        public List<Message> Messages { get; set; }
     }
 }

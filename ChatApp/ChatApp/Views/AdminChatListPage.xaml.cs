@@ -3,6 +3,7 @@ using ChatApp.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,10 +34,16 @@ namespace ChatApp.Views
             }
 
             UsersList.ItemsSource = userList;
-            
+
+            UsersList.ItemSelected += UsersList_ItemSelected;
 
         }
 
-
+        private void UsersList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Debug.WriteLine(e.SelectedItem.ToString());
+            var person = (UserPerson)e.SelectedItem;
+            Navigation.PushAsync(new AdminChatPage(person.Name));
+        }
     }
 }
