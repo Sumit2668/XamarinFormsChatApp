@@ -88,8 +88,8 @@ namespace ChatApp.Views
             await ChatClientService.Send(new Message
             {
                 Id = count,
-                Owner = _name,
-                Reciever = "admin",
+                Owner = "admin",
+                Reciever = _name,
                 Content = messageEntry.Text
             });
 

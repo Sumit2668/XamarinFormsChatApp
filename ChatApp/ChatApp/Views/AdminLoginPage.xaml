@@ -16,14 +16,16 @@
                    PlaceholderColor="Gray"
                    HorizontalTextAlignment="Center"
                    VerticalOptions="Center"
-                   Grid.Row="1"/>
+                   Grid.Row="1"
+                   x:Name="username"/>
 
             <Entry Placeholder="Password"
                    PlaceholderColor="Gray"
                    HorizontalTextAlignment="Center"
                    VerticalOptions="Center"
                    Grid.Row="2"
-                   IsPassword="True"/>
+                   IsPassword="True"
+                   x:Name="password"/>
 
             <Button x:Name="login"
                     Grid.Row="3"

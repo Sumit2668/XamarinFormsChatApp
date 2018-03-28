@@ -1,5 +1,6 @@
 ﻿using ChatApp.Services;
 using ChatApp.Shared.Models;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,10 +24,28 @@ namespace ChatApp.Views
 
         private async void Login_Clicked(object sender, EventArgs e)
         {
-            ChatClientService.SetUp();
-            await ChatClientService.Connect();
-            ChatClientService.Counter++;
-            Navigation.PushAsync(new AdminChatListPage());
+            if(username.Text == "admin" && password.Text == "admin")
+            {
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    ChatClientService.SetUp();
+                    await ChatClientService.Connect();
+                    ChatClientService.Counter++;
+                    Navigation.PushAsync(new AdminChatListPage());
+                }
+
+                else
+                {
+                    DisplayAlert("ChatApp", "No Network Cnnection", "Close");
+                }
+            }
+
+            else
+            {
+                DisplayAlert("ChatApp", "Invalid Login Credentials", "Close");
+            }
+            
+           
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ChatApp.Services;
 using ChatApp.Shared.Models;
 using Microsoft.AspNet.SignalR.Client;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,13 +28,23 @@ namespace ChatApp.Views
             Navigation.PushAsync(new AdminLoginPage());
         }
 
+
         private async void Login_Clicked(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(personName.Text) )
             {
-                ChatClientServiceUser ch = new ChatClientServiceUser();
-                await ch.Connect();
-                Navigation.PushAsync(new ChatPage(personName.Text, ref ch));
+                if(CrossConnectivity.Current.IsConnected)
+                {
+                    ChatClientServiceUser ch = new ChatClientServiceUser();
+                    await ch.Connect();
+                    Navigation.PushAsync(new ChatPage(personName.Text, ref ch));
+                }
+
+                else
+                {
+                    await DisplayAlert("ChatApp", "Check Network Connection", "Close");
+                }
+
             }
 
             else
