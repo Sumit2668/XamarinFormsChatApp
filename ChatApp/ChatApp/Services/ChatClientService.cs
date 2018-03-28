@@ -11,7 +11,7 @@ namespace ChatApp.Services
     {
         private static HubConnection _connection;
         private static IHubProxy _proxy;
-        public static event EventHandler<ChatMessage> OnMessageRecieved;
+        public static event EventHandler<Message> OnMessageRecieved;
         public static int Counter = 0;
 
         public static void SetUp()
@@ -30,22 +30,15 @@ namespace ChatApp.Services
             if (Counter == 0)
             {
                 await _connection.Start();
-                _proxy.On("GetMessage", (ChatMessage message) => OnMessageRecieved(null, message));
+                _proxy.On("GetMessage", (Message message) => OnMessageRecieved(null, message));
             }
             
         }
 
-        public static Task Send(ChatMessage message)
+        public static Task Send(Message message)
         {
             return _proxy.Invoke("SendMessage", message);
         }
 
     }
-
-    public class ChatMessage
-    {
-        public string Name { get; set; }
-        public string MessageStr { get; set; }
-    }
-
 }

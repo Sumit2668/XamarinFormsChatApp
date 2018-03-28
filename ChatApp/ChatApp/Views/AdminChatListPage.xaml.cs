@@ -21,13 +21,13 @@ namespace ChatApp.Views
 		{
 			InitializeComponent ();
 
-            if (UserServices.userPeople == null || !ReferenceEquals(userList, UserServices.userPeople))
+            if (AdminServices.userPeople == null || !ReferenceEquals(userList, AdminServices.userPeople))
             {
 
-                UserServices.userPeople = null;
+                AdminServices.userPeople = null;
                 userList = new ObservableCollection<UserPerson>();
-                UserServices.SetUp(ref userList);
-                UserServices.Counter++;
+                AdminServices.SetUp(ref userList);
+                AdminServices.Counter++;
                 
 
             }

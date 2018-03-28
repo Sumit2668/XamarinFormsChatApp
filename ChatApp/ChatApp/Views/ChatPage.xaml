@@ -11,18 +11,8 @@
             </Grid.RowDefinitions>
             <ScrollView Grid.Row="0"
                         Orientation="Horizontal">
-                <StackLayout>
-                    <StackLayout HorizontalOptions="End"
-                                 Padding="10"
-                                 BackgroundColor="#2196F3">
-                        <Label Text="Hello World"/>
-                    </StackLayout>
-                    <StackLayout HorizontalOptions="Start"
-                                 Padding="10"
-                                 BackgroundColor="#2196F3">
-                        <Label Text="Hello World"
-                               TextColor="White"/>
-                    </StackLayout>
+                <StackLayout x:Name="parentStack">
+                   
 
                 </StackLayout>
 

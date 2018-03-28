@@ -1,4 +1,6 @@
 ﻿using ChatApp.Services;
+using ChatApp.Shared.Models;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +31,9 @@ namespace ChatApp.Views
         {
             if (!string.IsNullOrEmpty(personName.Text) )
             {
-                ChatClientService.SetUp();
-                await ChatClientService.Connect();
-                Navigation.PushAsync(new ChatPage(personName.Text));
+                ChatClientServiceUser ch = new ChatClientServiceUser();
+                await ch.Connect();
+                Navigation.PushAsync(new ChatPage(personName.Text, ref ch));
             }
 
             else
@@ -39,5 +41,38 @@ namespace ChatApp.Views
                 personName.Placeholder = "Enter a Name First!";
             }
         }
+    }
+
+    public class ChatClientServiceUser
+    {
+        private HubConnection _connection;
+        private IHubProxy _proxy;
+        public event EventHandler<Message> OnMessageRecieved;
+        public int Counter = 0;
+
+        public ChatClientServiceUser()
+        {
+            _connection = new HubConnection("http://chatappapi.azurewebsites.net");
+            _proxy = _connection.CreateHubProxy("ChatHub");
+        }
+
+
+
+
+        public async Task Connect()
+        {
+            if (Counter == 0)
+            {
+                await _connection.Start();
+                _proxy.On("GetMessage", (Message message) => OnMessageRecieved(this, message));
+            }
+
+        }
+
+        public Task Send(Message message)
+        {
+            return _proxy.Invoke("SendMessage", message);
+        }
+
     }
 }
