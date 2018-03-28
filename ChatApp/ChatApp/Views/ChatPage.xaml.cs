@@ -25,7 +25,7 @@ namespace ChatApp.Views
         public ChatPage (string personName, ref ChatClientServiceUser ch)
 		{
 			InitializeComponent ();
-            _personName = personName;
+            _personName = personName.ToLower();
             sendButton.Clicked += SendButton_Clicked;
             chUser = ch;
             chUser.OnMessageRecieved += ChatClientService_OnMessageRecieved;
@@ -34,11 +34,32 @@ namespace ChatApp.Views
 
         private void ChatClientService_OnMessageRecieved(object sender, Message e)
         {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-
-            });
+          
             if (e.Reciever == "admin")
+            {
+                StackLayout sL = new StackLayout();
+                sL.HorizontalOptions = LayoutOptions.End;
+                sL.Padding = 10;
+                sL.BackgroundColor = Color.FromHex("#F6F6F6");
+
+                Label lbl = new Label();
+                lbl.Text = e.Content;
+                lbl.TextColor = Color.FromHex("#2196F3");
+
+                sL.Children.Add(lbl);
+
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    this.parentStack.Children.Add(sL);
+                    scrollView.ScrollToAsync(parentStack.Width, parentStack.Height, true);
+
+                    messageEntry.Text = "";
+                });
+
+               
+            }
+
+            else if (e.Reciever == _personName)
             {
                 StackLayout sL = new StackLayout();
                 sL.HorizontalOptions = LayoutOptions.Start;
@@ -50,33 +71,12 @@ namespace ChatApp.Views
                 lbl.TextColor = Color.White;
 
                 sL.Children.Add(lbl);
-
+                
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     this.parentStack.Children.Add(sL);
+                    scrollView.ScrollToAsync(parentStack.Width, parentStack.Height, true);
 
-                    messageEntry.Text = "";
-                });
-
-               
-            }
-
-            else if (e.Reciever == _personName)
-            {
-                StackLayout sL = new StackLayout();
-                sL.HorizontalOptions = LayoutOptions.End;
-                sL.Padding = 10;
-                sL.BackgroundColor = Color.Gray;
-
-                Label lbl = new Label();
-                lbl.Text = e.Content;
-                lbl.TextColor = Color.FromHex("#2196F3");
-
-                sL.Children.Add(lbl);
-
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    this.parentStack.Children.Add(sL);
                     messageEntry.Text = "";
                 });
                

@@ -10,7 +10,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ScrollView Grid.Row="0"
-                        Orientation="Horizontal">
+                        Orientation="Both"
+                        x:Name="scrollView">
                 <StackLayout x:Name="parentStack">
                    
 
